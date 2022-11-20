@@ -8,7 +8,22 @@
     margin-top: 3rem;
 }
 .insta-mob-img {
-    padding: 1rem;
+    width: 30vw;
+    height: 80vh;
+    background-image: url('../../assets/insta-mob-bg.png');
+    background-repeat: no-repeat;
+    background-position: 1rem 1rem;
+    background-size: calc(95%) calc(98%);
+    /* border: 1px solid red; */
+}
+.insta-mob-carousel {
+    margin-top: 6rem;
+    margin-left: 9.7rem;
+    box-sizing: border-box;
+    max-width: 15.2rem;
+    max-height: 26.5rem;
+    overflow: hidden;
+    /* border: 1px solid black; */
 }
 .login-cont {
     display: flex;
