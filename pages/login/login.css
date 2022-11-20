@@ -1,0 +1,33 @@
+* {
+    box-sizing: border-box;
+    user-select: none;
+}
+.login-cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 5rem;
+    text-align: center;
+}
+.login-card {
+    width: 25rem;
+    border: 1px solid #E0E0E0;
+    padding: 1rem;
+}
+.forget-password {
+    color: #1976D2;
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+#outlined-basic {
+    height: 1rem;
+}
+.login-btn {
+    margin-top: 2rem;
+}
+.signup-btn-in-login {
+    color: blueviolet;
+    cursor: pointer;
+}
