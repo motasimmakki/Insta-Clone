@@ -1,21 +1,42 @@
+* {
+    box-sizing: border-box;
+    user-select: none;
+}
 .signup-cont {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 10rem;
+    flex-direction: column;
+    margin-top: 5rem;
     text-align: center;
 }
 .signup-card {
     width: 25rem;
-    border: 1px solid red;
+    border: 1px solid #E0E0E0;
     padding: 1rem;
+}
+.signup-msg {
+    color: #808080;
+    margin: 0.5rem 0 0.5rem 0;
 }
 .upload-btn {
     padding: 0.5rem;
+    margin-top: 0.5rem;
 }
 .upload-icon {
     margin: 0 0.5rem 0 0.5rem;
 }
 .signup-btn {
-    margin-top: 1.5rem;
+    margin-top: 2rem;
+}
+.tnc {
+    margin: 1.5rem 0 0.5rem 0;
+    color: #808080;
+}
+.bottom-card {
+    width: 25rem;
+    padding: 1rem;
+    margin: 1.5rem 0 1.5rem 0;
+    color: #808080;
+    border: 1px solid  #E0E0E0;
 }

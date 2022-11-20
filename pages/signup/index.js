@@ -10,6 +10,9 @@ export default function index() {
     <div className='signup-cont'>
         <div className='signup-card'>
             <Image src={logo} alt="instagram-logo"/>
+            <div className='signup-msg'>
+                Sign up to see photos and videos from your friends
+            </div>
             <TextField id="outlined-basic" label="E-mail"
              variant="outlined" fullWidth margin="dense"/>
             <TextField id="outlined-basic" label="Password" 
@@ -26,6 +29,12 @@ export default function index() {
             className='signup-btn'>
                 Signup
             </Button>
+            <div className='tnc'>
+                By signing up, you agree to our Terms, Conditions and Cookies policy.
+            </div>
+        </div>
+        <div className='bottom-card'>
+            Already have an account? <span>Login</span>
         </div>
     </div>
   )
