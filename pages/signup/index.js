@@ -17,9 +17,14 @@ export default function index() {
             <TextField id="outlined-basic" label="Full Name" 
             variant="outlined" fullWidth margin="dense"/>
             <Button variant="outlined" fullWidth margin="dense" 
-            color="secondary" className='upload-btn'>
+            color="secondary" className='upload-btn' component="label">
                 <CloudUploadTwoToneIcon className='upload-icon'/>
                 Upload Profile Image
+                <input hidden accept='image/*' type="file"/>
+            </Button>
+            <Button variant="contained" fullWidth margin="dense"
+            className='signup-btn'>
+                Signup
             </Button>
         </div>
     </div>
