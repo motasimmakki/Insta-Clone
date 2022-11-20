@@ -2,12 +2,20 @@
     box-sizing: border-box;
     user-select: none;
 }
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+}
+.insta-mob-img {
+    padding: 1rem;
+}
 .login-cont {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-top: 5rem;
+    margin-top: 3rem;
     text-align: center;
 }
 .login-card {
