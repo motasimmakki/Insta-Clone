@@ -17,11 +17,12 @@
     /* border: 1px solid red; */
 }
 .insta-mob-carousel {
-    margin-top: 6rem;
+    margin-top: 5.8rem;
     margin-left: 9.7rem;
     box-sizing: border-box;
     max-width: 15.2rem;
-    max-height: 26.5rem;
+    /* max-height: 26.55rem; */
+    height: auto;
     overflow: hidden;
     /* border: 1px solid black; */
 }
