@@ -34,7 +34,7 @@ export default function index() {
             </div>
         </div>
         <div className='bottom-card'>
-            Already have an account? <span>Login</span>
+            Already have an account? <span className='login-btn'>Login</span>
         </div>
     </div>
   )

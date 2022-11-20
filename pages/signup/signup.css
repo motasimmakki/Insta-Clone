@@ -19,6 +19,9 @@
     color: #808080;
     margin: 0.5rem 0 0.5rem 0;
 }
+#outlined-basic {
+    height: 1rem;
+}
 .upload-btn {
     padding: 0.5rem;
     margin-top: 0.5rem;
@@ -39,4 +42,8 @@
     margin: 1.5rem 0 1.5rem 0;
     color: #808080;
     border: 1px solid  #E0E0E0;
+}
+.login-btn {
+    color: blueviolet;
+    cursor: pointer;
 }
