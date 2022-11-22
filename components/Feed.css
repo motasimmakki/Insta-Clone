@@ -1,0 +1,29 @@
+.feed-cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.upload-btn {
+    margin-top: 1rem;
+}
+.videos-cont {
+    height: 70vh;
+    overflow-y: scroll;
+}
+.videos-cont::-webkit-scrollbar {
+    display: none;
+}
+.post-cont {
+    width: 20rem;
+    height: 100%;
+    margin-top: 1rem;
+}
+.post-cont>video {
+    width: 20rem;
+    height: 100%;
+    background-color: pink;
+    border-radius: 20px;
+    border: 1px solid black;
+    object-fit: contain;
+}
