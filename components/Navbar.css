@@ -1,0 +1,13 @@
+.navbar-cont {
+    background-color: white;
+    box-shadow: none;
+    margin-top: 1rem;
+}
+.nav-icons-cont {
+    display: flex;
+    align-items: center;
+    color: black;
+}
+.nav-icons {
+    margin-right: 1rem;
+}

@@ -19,7 +19,7 @@ export default function index() {
             <Carousel className='insta-mob-carousel' 
             showStatus={false} showIndicators={false}
             showArrows={false} showThumbs={false}
-            autoPlay interval={1500} infiniteLoop stopOnHover>
+            autoPlay interval={1500} infiniteLoop st>
                 <div>
                     <Image src={bg1} alt='mob-img'/>
                 </div>
