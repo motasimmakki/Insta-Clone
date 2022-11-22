@@ -1,7 +1,10 @@
 .navbar-cont {
     background-color: white;
-    box-shadow: none;
-    margin-top: 1rem;
+    /* box-shadow: none; */
+    /* margin-top: 1rem; */
+}
+.insta-logo {
+    padding: 0.6rem;
 }
 .nav-icons-cont {
     display: flex;
@@ -10,4 +13,9 @@
 }
 .nav-icons {
     margin-right: 1rem;
+}
+@media screen and (max-width: 500px) {
+    .nav-icons {
+        display: none;
+    }
 }

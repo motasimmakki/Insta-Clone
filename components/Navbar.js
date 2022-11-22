@@ -60,7 +60,7 @@ function ResponsiveAppBar() {
             }}
           >
             {/* LOGO */}
-            <Image src={insta} alt="insta-logo"/>
+            <Image src={insta} alt="insta-logo" className='insta-logo'/>
           </Typography>
 
           {/* <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
