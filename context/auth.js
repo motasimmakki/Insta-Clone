@@ -1,7 +1,15 @@
-import React from 'react'
+import React, { createContext } from 'react'
+import {signInWithEmailAndPassword } from "firebase/auth";
+import { Auth } from 'firebase/auth';
+export const AuthContext = createContext();
 
-export default function AuthWrapper() {
+export default function AuthWrapper({children}) {
+    function login(email, password) {
+        return signInWithEmailAndPassword(auth, email, password);
+    }
   return (
-    <div>AuthWrapper</div>
+    <AuthContext.Provider value={store}>
+        {children}
+    </AuthContext.Provider>
   )
 }
