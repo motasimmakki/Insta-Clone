@@ -8,7 +8,7 @@ export default function AuthWrapper({children}) {
         return signInWithEmailAndPassword(auth, email, password);
     }
   return (
-    <AuthContext.Provider value={store}>
+    <AuthContext.Provider value={Auth}>
         {children}
     </AuthContext.Provider>
   )

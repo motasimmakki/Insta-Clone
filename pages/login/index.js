@@ -18,7 +18,7 @@ export default function Index() {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
-    const { login } = useContext(AuthContext);
+    const login = useContext(AuthContext);
 
     let handleClick = async () => {
         try {
@@ -43,19 +43,19 @@ export default function Index() {
                 showArrows={false} showThumbs={false}
                 autoPlay interval={1500} infiniteLoop st>
                     <div>
-                        <Image src={bg1} alt='mob-img'/>
+                        <Image src={bg1} className='mob-img' alt='mob-img' priority/>
                     </div>
                     <div>
-                        <Image src={bg2} alt='mob-img'/>
+                        <Image src={bg2} className='mob-img' alt='mob-img'/>
                     </div>
                     <div>
-                        <Image src={bg3} alt='mob-img'/>
+                        <Image src={bg3} className='mob-img' alt='mob-img'/>
                     </div>
                     <div>
-                        <Image src={bg4} alt='mob-img'/>
+                        <Image src={bg4} className='mob-img' alt='mob-img'/>
                     </div>
                     <div>
-                        <Image src={bg5} alt='mob-img'/>
+                        <Image src={bg5} className='mob-img' alt='mob-img'/>
                     </div>
                 </Carousel>
             </div>
@@ -76,7 +76,7 @@ export default function Index() {
                     Forget Password?
                 </div>
                 <Button variant="contained" fullWidth margin="dense"
-                className='login-btn' onClick={this.handleClick}>
+                className='login-btn' onClick={handleClick}>
                     Log In
                 </Button>
             </div>

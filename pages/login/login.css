@@ -26,6 +26,10 @@
     overflow: hidden;
     /* border: 1px solid black; */
 }
+.mob-img {
+    width: auto;
+    height: auto;
+}
 .login-cont {
     display: flex;
     justify-content: center;
