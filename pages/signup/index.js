@@ -4,6 +4,7 @@ import logo from '../../assets/Instagram.jpeg'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import CloudUploadTwoToneIcon from '@mui/icons-material/CloudUploadTwoTone';
+import Link from 'next/link';
 
 export default function index() {
   return (
@@ -37,7 +38,10 @@ export default function index() {
             </div>
         </div>
         <div className='bottom-card'>
-            Already have an account? <span className='login-btn-in-signup'>Login</span>
+            Already have an account? 
+            <Link href='/login'>
+                <span className='login-btn-in-signup'> Login</span>
+            </Link>
         </div>
     </div>
   )
