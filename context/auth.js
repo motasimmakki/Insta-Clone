@@ -14,6 +14,7 @@ export default function AuthWrapper({children}) {
         const uid = user.uid;
       } else {
         // if user is signed out.
+        setUser("");
       }
     });
     setLoading(false);
