@@ -18,7 +18,7 @@ export default function Index() {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
-    const login = useContext(AuthContext);
+    const { login } = useContext(AuthContext);
 
     let handleClick = async () => {
         try {
@@ -28,9 +28,12 @@ export default function Index() {
             setError("");
             await login(email, password);
             console.log("Logged In");
-        }
-        catch(err) {
-            setError(err);
+        } catch(err) {
+            console.log("Error ", JSON.stringify(err));
+            setError(err.code);
+            setTimeout(() => {
+                setError('');
+            }, 2000)
         }
         setLoading(false);
     }
@@ -62,12 +65,14 @@ export default function Index() {
             <div className='login-cont'>
             <div className='login-card'>
                 <Image src={logo} alt="instagram-logo"/>
+                
                 <TextField id="outlined-basic" label="E-mail"
-                variant="outlined" fullWidth margin="dense"
-                value={email} onClick={(e) => setEmail(e.target.value)}/>
+                variant="outlined" fullWidth margin="dense" type='email'
+                value={email} onChange={(e) => setEmail(e.target.value)}/>
+                
                 <TextField id="outlined-basic" label="Password" 
-                variant="outlined" fullWidth margin="dense"
-                value={password} onClick={(e) => setPassword(e.target.value)}/>
+                variant="outlined" fullWidth margin="dense" type='password'
+                value={password} onChange={(e) => setPassword(e.target.value)}/>
                 {/* If error, then show error. */}
                 {
                     (error != "") && <div style={{color: "red"}}>{error}</div>

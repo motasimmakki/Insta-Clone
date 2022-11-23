@@ -1,14 +1,18 @@
 import React, { createContext } from 'react'
 import {signInWithEmailAndPassword } from "firebase/auth";
-import { Auth } from 'firebase/auth';
+import { auth } from '../firebase';
 export const AuthContext = createContext();
 
 export default function AuthWrapper({children}) {
-    function login(email, password) {
-        return signInWithEmailAndPassword(auth, email, password);
-    }
+  // console.log("Inside AuthWrapper!");
+  function login(email, password) {
+      return signInWithEmailAndPassword(auth, email, password);
+  }
+  const store = {
+    login
+  }
   return (
-    <AuthContext.Provider value={Auth}>
+    <AuthContext.Provider value={store}>
         {children}
     </AuthContext.Provider>
   )
