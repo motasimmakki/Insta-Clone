@@ -19,16 +19,19 @@ export default function index() {
             variant="outlined" fullWidth margin="dense"/>
             <TextField id="outlined-basic" label="Full Name" 
             variant="outlined" fullWidth margin="dense"/>
-            <Button variant="outlined" fullWidth margin="dense" 
-            color="secondary" className='upload-btn' component="label">
-                <CloudUploadTwoToneIcon className='upload-icon'/>
-                Upload Profile Image
-                <input hidden accept='image/*' type="file"/>
-            </Button>
-            <Button variant="contained" fullWidth margin="dense"
-            className='signup-btn'>
-                Signup
-            </Button>
+            <div className='upload-btn'>
+                <Button variant="outlined" fullWidth margin="dense" 
+                color="secondary" component="label">
+                    <CloudUploadTwoToneIcon className='upload-icon'/>
+                    Upload Profile Image
+                    <input hidden accept='image/*' type="file"/>
+                </Button>
+            </div>
+            <div className='signup-btn'>
+                <Button variant="contained" fullWidth margin="dense">
+                    Signup
+                </Button>
+            </div>
             <div className='tnc'>
                 By signing up, you agree to our Terms, Conditions and Cookies policy.
             </div>

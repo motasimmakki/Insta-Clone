@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Image from 'next/image'
 import logo from '../../assets/Instagram.jpeg'
 import TextField from '@mui/material/TextField';
@@ -11,14 +11,21 @@ import bg3 from '../../assets/bg3.jpg';
 import bg4 from '../../assets/bg4.jpg';
 import bg5 from '../../assets/bg5.jpg';
 import { AuthContext } from '../../context/auth'
+import { useRouter } from 'next/router';
 
 export default function Index() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
+    const { login, user } = useContext(AuthContext);
+    const router = useRouter();
 
-    const { login } = useContext(AuthContext);
+    useEffect(() => {
+        if(user) {
+            router.push('/');
+        }
+    }, [user])
 
     let handleClick = async () => {
         try {
@@ -80,10 +87,12 @@ export default function Index() {
                 <div className='forget-password'>
                     Forget Password?
                 </div>
-                <Button variant="contained" fullWidth margin="dense"
-                className='login-btn' onClick={handleClick}>
-                    Log In
-                </Button>
+                <div className='login-btn'>
+                    <Button variant="contained" fullWidth margin="dense" 
+                    onClick={handleClick}>
+                        Log In
+                    </Button>
+                </div>
             </div>
             <div className='bottom-card'>
                 Don't have an account? <span className='signup-btn-in-login'>Signup</span>
