@@ -7,7 +7,8 @@ import CloudUploadTwoToneIcon from '@mui/icons-material/CloudUploadTwoTone';
 import Link from 'next/link';
 import { AuthContext } from '../../context/auth';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
-import { storage } from '../../firebase';
+import { storage, db } from '../../firebase';
+import { doc, setDoc } from 'firebase/firestore';
 
 export default function Index() {
     const [email, setEmail] = useState("");
@@ -44,8 +45,15 @@ export default function Index() {
             }, 
             () => {
                 // Upload completed successfully, now we can get the download URL
-                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                console.log('File available at', downloadURL);
+                getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+                    console.log('File available at', downloadURL);
+                    let userData = {
+                        fullname,
+                        email,
+                        password,
+                        profilePhoto: downloadURL
+                    };
+                    await setDoc(doc(db, "user", userInfo.user.uid), userData);
                 });
                 console.log("User Signed In!");
             })
