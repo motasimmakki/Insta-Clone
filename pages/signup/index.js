@@ -21,6 +21,19 @@ export default function index() {
         console.log(fullname);
         console.log(password);
         console.log(file);
+        try {
+            setLoading(true);
+            setError("");
+            const userInfo = await signup(email, password);
+            console.log("User Signed In!");
+        } catch(err) {
+            console.log("Error: ", err);
+            setError(err.code);
+            setTimeout(() => {
+                setError("");
+            }, 2000)
+        }
+        setLoading(false);
     }
     
     return (
@@ -31,11 +44,11 @@ export default function index() {
                 Sign up to see photos and videos from your friends
             </div>
             <TextField id="outlined-basic" label="E-mail"
-             variant="outlined" fullWidth margin="dense"
+             variant="outlined" fullWidth margin="dense" type='email'
              value={email} onChange={(e) => setEmail(e.target.value)}/>
             
             <TextField id="outlined-basic" label="Password" 
-            variant="outlined" fullWidth margin="dense"
+            variant="outlined" fullWidth margin="dense" type='password'
             value={password} onChange={(e) => setPassword(e.target.value)}/>
             
             <TextField id="outlined-basic" label="Full Name" 
