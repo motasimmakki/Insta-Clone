@@ -29,11 +29,15 @@ export default function AuthWrapper({children}) {
   function forgetPassword(email) {
     return sendPasswordResetEmail(auth, email);
   }
+  function signup(email, password) {
+    return signInWithEmailAndPassword (auth, email, password);
+  }
   const store = {
     login,
     logout,
     user,
-    forgetPassword
+    forgetPassword,
+    signup
   }
   return (
     <AuthContext.Provider value={store}>
