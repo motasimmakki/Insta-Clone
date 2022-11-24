@@ -6,7 +6,8 @@ import Button from '@mui/material/Button';
 import CloudUploadTwoToneIcon from '@mui/icons-material/CloudUploadTwoTone';
 import Link from 'next/link';
 import { AuthContext } from '../../context/auth';
-import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+import { storage } from '../../firebase';
 
 export default function Index() {
     const [email, setEmail] = useState("");
@@ -27,7 +28,6 @@ export default function Index() {
             setError("");
             const userInfo = await signup(email, password);
             
-            const storage = getStorage();
             // Upload file and metadata to the object 'images/mountains.jpg'
             const storageRef = ref(storage, `${userInfo.user.uid}/Profile`);
             const uploadTask = uploadBytesResumable(storageRef, file);
