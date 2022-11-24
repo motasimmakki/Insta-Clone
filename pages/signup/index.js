@@ -7,7 +7,7 @@ import CloudUploadTwoToneIcon from '@mui/icons-material/CloudUploadTwoTone';
 import Link from 'next/link';
 import { AuthContext } from '../../context/auth';
 
-export default function index() {
+export default function Index() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [fullname, setFullname] = useState("");
