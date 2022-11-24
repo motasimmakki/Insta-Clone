@@ -3,6 +3,7 @@ import './signup/signup.css'
 import './login/login.css'
 import '../components/Feed.css'
 import '../components/Navbar.css'
+import '../components/Profile.css'
 import type { AppProps } from 'next/app'
 import AuthWrapper from '../context/auth'
 
