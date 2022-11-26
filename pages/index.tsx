@@ -2,8 +2,16 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Feeds from '../components/Feeds'
+import { useContext } from 'react'
+import { AuthContext } from '../context/auth'
+import { useRouter } from 'next/router'
 
 export default function Home() {
+  const { user } = useContext(AuthContext);
+  const Redirect = () => {
+    const router = useRouter();
+    router.push('/login');
+  }
   return (
     <div className={styles.container}>
       <Head>
@@ -12,7 +20,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {/* <h1>Welcome Motasim!</h1> */}
-      <Feeds/>
+      { user?.uid? <Feeds/>: <Redirect/> }
     </div>
   )
 }
