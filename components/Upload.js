@@ -24,6 +24,7 @@ export default function Upload() {
       setTimeout(() => {setError('')}, 3000);
       return;
     }
+    setLoading(true);
   }
 
   return (
