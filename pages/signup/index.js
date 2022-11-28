@@ -28,13 +28,15 @@ export default function Index() {
             setLoading(true);
             setError("");
             const userInfo = await signup(email, password);
+            console.log(JSON.stringify(userInfo));
             
             // Upload file and metadata to the object 'images/mountains.jpg'
             const storageRef = ref(storage, `${userInfo.user.uid}/Profile`);
             const uploadTask = uploadBytesResumable(storageRef, file);
 
             // Listen for state changes, errors, and completion of the upload.
-            uploadTask.on('state_changed',
+            uploadTask.on(
+            'state_changed',
             (snapshot) => {
                 // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
                 const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
@@ -46,14 +48,14 @@ export default function Index() {
             () => {
                 // Upload completed successfully, now we can get the download URL
                 getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-                    console.log('File available at', downloadURL);
+                    console.log('File available at: ', downloadURL);
                     let userData = {
                         fullname,
                         email,
                         password,
                         profilePhoto: downloadURL
                     };
-                    await setDoc(doc(db, "user", userInfo.user.uid), userData);
+                    await setDoc(doc(db, "users", userInfo.user.uid), userData);
                 });
                 console.log("User Signed In!");
             })

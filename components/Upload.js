@@ -21,7 +21,7 @@ export default function Upload() {
     }
     if((file.size / (1024 * 1024)) > fileLimit) {
       setError(`File too large, try uploading a file less than ${fileLimit}MB`);
-      setTimeout(() => {setError('')}, 3000);
+      setTimeout(() => setError(''), 3000);
       return;
     }
     setLoading(true);

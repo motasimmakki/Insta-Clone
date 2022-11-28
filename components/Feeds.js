@@ -12,10 +12,10 @@ export default function Feeds() {
   useEffect(() => {
     console.log("User Data: ", user);
     const unsub = onSnapshot(doc(db, "user", user.uid), (doc) => {
-      console.log(doc.data());
+      console.log("doc: ", doc);
       setUserData(doc.data());
     });
-    return () => {unsub()}
+    return () => unsub()
   }, [user]);
 
   return (
