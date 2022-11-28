@@ -17,7 +17,7 @@ import ExploreIcon from '@mui/icons-material/Explore';
 import { AuthContext } from '../context/auth';
 import { useRouter } from 'next/router';
 
-function ResponsiveAppBar() {
+function ResponsiveAppBar({ userData }) {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const { logout } = useContext(AuthContext);
@@ -139,7 +139,7 @@ function ResponsiveAppBar() {
             <ExploreIcon fontSize='large' className='nav-icons'/>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Remy Sharp" src={userData.profilePhoto} />
               </IconButton>
             </Tooltip>
             <Menu
