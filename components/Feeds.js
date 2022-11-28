@@ -10,18 +10,18 @@ export default function Feeds() {
   const [userData, setUserData] = useState({});
   
   useEffect(() => {
-    console.log("User Data: ", user);
-    const unsub = onSnapshot(doc(db, "user", user.uid), (doc) => {
-      console.log("doc: ", doc);
+    // console.log("User Data: ", user);
+    const unsub = onSnapshot(doc(db, "users", user.uid), (doc) => {
+      // console.log("doc: ", doc.data());
       setUserData(doc.data());
     });
-    return () => unsub()
+    return () => unsub();
   }, [user]);
 
   return (
     <div className='feed-cont'>
-        <Navbar/>
-        <Upload/>
+        <Navbar userData={ userData }/>
+        <Upload userData={ userData }/>
         <div className='videos-cont'>
           <div className='post-cont'>
             <video/>

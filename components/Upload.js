@@ -4,8 +4,13 @@ import Stack from '@mui/material/Stack';
 import MovieIcon from '@mui/icons-material/Movie';
 import LinearProgress from '@mui/material/LinearProgress';
 import Alert from '@mui/material/Alert';
+import { db, storage } from '../firebase';
+import { v4 as uuidv4 } from 'uuid';
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
 
-export default function Upload() {
+export default function Upload({ userData }) {
+  // console.log("User data: ", userData);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [progress, setProgress] = useState(0);
@@ -25,7 +30,48 @@ export default function Upload() {
       return;
     }
     setLoading(true);
-  }
+
+    let uid = uuidv4();
+    const storageRef = ref(storage, `${userData.uid}/post/${uid}`);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+        const prog = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        setProgress(prog);
+        console.log('Upload is ' + prog + '% done');
+      }, 
+      (error) => {
+        console.log("Error: ", error);
+        setError(error.code);
+        setTimeout(() => {
+          setError("");
+        }, 2000)
+        return;
+      }, 
+      () => {
+        // Upload completed successfully, now we can get the download URL
+        getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+          console.log('File available at: ', downloadURL);
+          let postData = {
+            likes: [],
+            postId: uid,
+            postURL: downloadURL,
+            profileName: userData.fullname,
+            profilePhotoURL: userData.profilePhoto,
+            userId: userData.uid,
+            timeStamp: serverTimestamp()
+          };
+          console.log("postData: ", postData);
+          await setDoc(doc(db, "posts", uid), postData);
+          console.log("Post added to post collection successfully!!!");
+        });
+        console.log("User Signed In!");
+      })
+      // setLoading(false);
+    }
 
   return (
     <div className='upload-btn'>
