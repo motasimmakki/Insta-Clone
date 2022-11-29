@@ -88,8 +88,8 @@ export default function Upload({ userData }) {
       }
       {
         loading &&
-        <LinearProgress variant="determinate" color="secondary" value={60}
-        sx={{mt:"0.5rem"}}/>
+        <LinearProgress variant="determinate" color="secondary" value={progress}
+        sx={{mt:"0.5rem", mb:"0.5rem"}}/>
       }
     </div>
   )

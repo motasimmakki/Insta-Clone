@@ -1,4 +1,4 @@
-import { doc, onSnapshot } from 'firebase/firestore';
+import { collection, doc, onSnapshot, orderBy, query } from 'firebase/firestore';
 import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../context/auth'
 import { db } from '../firebase';
@@ -8,6 +8,7 @@ import Upload from './Upload'
 export default function Feeds() {
   const { user } = useContext(AuthContext);
   const [userData, setUserData] = useState({});
+  const [posts, setPosts] = useState([]);
   
   useEffect(() => {
     // console.log("User Data: ", user);
@@ -17,6 +18,19 @@ export default function Feeds() {
     });
     return () => unsub();
   }, [user]);
+  
+  // Getting posts from db.
+  // work as: Component Did Mount (CDM).
+  useEffect(() => {
+    const unsub = onSnapshot(query(collection(db, "posts"), orderBy("timestamp", "desc")),
+      (snapshot) => {
+        let tempArray = [];
+        snapshot.docs.map(doc => tempArray.push(doc.data()));
+        setPosts([...tempArray]);
+      }
+    );
+    return () => unsub();
+  }, []);
 
   return (
     <div className='feed-cont'>
@@ -32,6 +46,9 @@ export default function Feeds() {
           <div className='post-cont'>
             <video/>
           </div>
+          {
+            // posts.map((post) => <Post key={post.postId} postData={post}/>)
+          }
         </div>
     </div>
   )
