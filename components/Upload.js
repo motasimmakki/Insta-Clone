@@ -67,10 +67,10 @@ export default function Upload({ userData }) {
           console.log("postData: ", postData);
           await setDoc(doc(db, "posts", uid), postData);
           console.log("Post added to post collection successfully!!!");
+          setLoading(false);
         });
         console.log("User Signed In!");
       })
-      // setLoading(false);
     }
 
   return (
