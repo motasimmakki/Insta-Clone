@@ -4,6 +4,7 @@ import { AuthContext } from '../context/auth'
 import { db } from '../firebase';
 import Navbar from './Navbar'
 import Upload from './Upload'
+import Post from './Post'
 
 export default function Feeds() {
   const { user } = useContext(AuthContext);
@@ -37,7 +38,7 @@ export default function Feeds() {
         <Navbar userData={ userData }/>
         <Upload userData={ userData }/>
         <div className='videos-cont'>
-          <div className='post-cont'>
+          {/* <div className='post-cont'>
             <video/>
           </div>
           <div className='post-cont'>
@@ -45,9 +46,9 @@ export default function Feeds() {
           </div>
           <div className='post-cont'>
             <video/>
-          </div>
+          </div> */}
           {
-            // posts.map((post) => <Post key={post.postId} postData={post}/>)
+            posts.map((post) => <Post key={post.postId} postData={post}/>)
           }
         </div>
     </div>
