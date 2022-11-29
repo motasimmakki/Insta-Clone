@@ -4,11 +4,13 @@ import logo from '../../assets/Instagram.jpeg'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import CloudUploadTwoToneIcon from '@mui/icons-material/CloudUploadTwoTone';
+import LinearProgress from '@mui/material/LinearProgress';
 import Link from 'next/link';
 import { AuthContext } from '../../context/auth';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { storage, db } from '../../firebase';
 import { doc, setDoc } from 'firebase/firestore';
+import { useRouter } from 'next/router';
 
 export default function Index() {
     const [email, setEmail] = useState("");
@@ -16,8 +18,10 @@ export default function Index() {
     const [fullname, setFullname] = useState("");
     const [file, setFile] = useState(null);
     const [error, setError] = useState("");
+    const [progress, setProgress] = useState(0);
     const [loading, setLoading] = useState(false);
     const { signup, user } = useContext(AuthContext);
+    const route = useRouter();
 
     const handleClick = async () => {
         console.log(email);
@@ -28,7 +32,7 @@ export default function Index() {
             setLoading(true);
             setError("");
             const userInfo = await signup(email, password);
-            console.log(JSON.stringify(userInfo));
+            // console.log(JSON.stringify(userInfo));
             
             // Upload file and metadata to the object 'images/mountains.jpg'
             const storageRef = ref(storage, `${userInfo.user.uid}/Profile`);
@@ -39,8 +43,9 @@ export default function Index() {
             'state_changed',
             (snapshot) => {
                 // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                console.log('Upload is ' + progress + '% done');
+                const prog = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                setProgress(prog);
+                console.log('Upload is ' + prog + '% done');
             }, 
             (error) => {
                 console.log(error);
@@ -58,7 +63,7 @@ export default function Index() {
                     };
                     await setDoc(doc(db, "users", userInfo.user.uid), userData);
                 });
-                console.log("User Signed In!");
+                console.log("User Signed In!");        
             })
         } catch(err) {
             console.log("Error: ", err);
@@ -68,6 +73,7 @@ export default function Index() {
             }, 2000)
         }
         setLoading(false);
+        route.push('/login');
     }
     
     return (
@@ -97,6 +103,11 @@ export default function Index() {
                     <input hidden accept='image/*' type="file"
                     onChange={(e) => setFile(e.target.files[0])}/>
                 </Button>
+                {
+                    loading &&
+                    <LinearProgress variant="determinate" color="secondary" value={progress}
+                    sx={{mt:"0.5rem", mb:"0.5rem"}}/>
+                }
             </div>
             <div className='signup-btn'>
                 <Button variant="contained" fullWidth margin="dense"
