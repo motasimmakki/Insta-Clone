@@ -7,7 +7,7 @@ import Alert from '@mui/material/Alert';
 import { db, storage } from '../firebase';
 import { v4 as uuidv4 } from 'uuid';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
-import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
+import { arrayUnion, doc, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore';
 
 export default function Upload({ userData }) {
   // console.log("User data: ", userData);
@@ -68,6 +68,10 @@ export default function Upload({ userData }) {
           await setDoc(doc(db, "posts", uid), postData);
           console.log("Post added to post collection successfully!!!");
           setLoading(false);
+
+          await updateDoc(doc(db, "users", userData.uid), {
+            posts: arrayUnion(uid)
+          });
         });
         console.log("User Signed In!");
       })

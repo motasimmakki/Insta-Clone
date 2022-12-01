@@ -21,7 +21,13 @@ export default function Index() {
     const [progress, setProgress] = useState(0);
     const [loading, setLoading] = useState(false);
     const { signup, user } = useContext(AuthContext);
-    const route = useRouter();
+    const router = useRouter();
+
+    useEffect(() => {
+        if(user) {
+            router.push("/");
+        }
+    }, [user]);
 
     const handleClick = async () => {
         console.log(email);
@@ -73,7 +79,7 @@ export default function Index() {
             }, 2000)
         }
         setLoading(false);
-        route.push('/login');
+        router.push('/login');
     }
     
     return (
