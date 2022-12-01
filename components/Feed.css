@@ -18,12 +18,29 @@
     width: 20rem;
     height: 100%;
     margin-top: 1rem;
+    position: relative;
 }
 .post-cont>video {
     width: 20rem;
     height: 100%;
-    background-color: pink;
+    /* background-color: pink; */
     border-radius: 20px;
     border: 1px solid black;
     object-fit: contain;
+    position: absolute;
+}
+.videos-info {
+    position: absolute;
+    right: 0%;
+    bottom: 0%;
+}
+.avatar-cont, .post-like {
+    display: flex;
+    align-items: center;
+}
+.avatar-cont>*, .post-like>* {
+    margin-right: 1rem;
+}
+.post-like {
+    float: right;
 }

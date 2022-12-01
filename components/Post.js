@@ -13,8 +13,7 @@ export default function Post({ postData }) {
             </div>
             <div className='post-like'>
                 <FavoriteIcon/>
-                <p>3</p>
-                {/* <p>{postData.likes.length}</p> */}
+                <p>{postData.likes.length}</p>
             </div>
         </div>
     </div>
