@@ -23,12 +23,12 @@ export default function Feeds() {
   // Getting posts from db.
   // work as: Component Did Mount (CDM).
   useEffect(() => {
-    const unsub = onSnapshot(query(collection(db, "posts"), orderBy("timestamp", "desc")),
-      (snapshot) => {
-        let tempArray = [];
-        snapshot.docs.map(doc => tempArray.push(doc.data()));
-        setPosts([...tempArray]);
-      }
+    const unsub = onSnapshot(query(collection(db, "posts"), orderBy("timeStamp", "desc")),
+    (snapshot) => {
+      let tempArray = [];
+      snapshot.docs.map(doc => tempArray.push(doc.data()));
+      setPosts([...tempArray]);
+    }
     );
     return () => unsub();
   }, []);
