@@ -44,3 +44,6 @@
 .post-like {
     float: right;
 }
+.likes {
+    color: red;
+}
