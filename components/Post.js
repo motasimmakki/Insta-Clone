@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { Avatar } from '@mui/material'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { arrayRemove, arrayUnion, doc, updateDoc } from 'firebase/firestore';
+import { db } from '../firebase';
 
 export default function Post({ postData, userData}) {
   const [like, setLike] = useState(false);
@@ -12,14 +14,18 @@ export default function Post({ postData, userData}) {
     }
   }, []);
 
-  const handleLike = () => {
+  const handleLike = async () => {
     if(like) {
-      // Handle uid in postData.likes
-
       setLike(false);
+      // Handle uid in postData.likes
+      await updateDoc(doc(db, "posts", postData.postId), {
+        likes: arrayRemove(userData.uid)
+      });
     } else {
-      
       setLike(true);
+      await updateDoc(doc(db, "posts", postData.postId), {
+        likes: arrayUnion(userData.uid)
+      });
     }
   }
 
