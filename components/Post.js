@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import { arrayRemove, arrayUnion, doc, updateDoc } from 'firebase/firestore';
 import AddCommentIcon from '@mui/icons-material/AddComment';
 import { db } from '../firebase';
+import Comment from './Comment';
 
 export default function Post({ postData, userData}) {
   const [like, setLike] = useState(false);
@@ -79,8 +80,9 @@ export default function Post({ postData, userData}) {
                   {(!like)? 
                     <FavoriteBorderIcon onClick={handleLike}/>: 
                     <FavoriteIcon onClick={handleLike} className= 'likes'/>}
-                    <TextField id="outlined-basic" label="Add comment" variant="outlined" />
-                    <Button variant='contained'>Post</Button>
+                    {/* <TextField id="outlined-basic" label="Add comment" variant="outlined" />
+                    <Button variant='contained'>Post</Button> */}
+                    <Comment/>
                 </div>
               </Card>
             </div>
