@@ -9,16 +9,28 @@ import { db } from '../firebase';
 export default function Profile() {
     const { user } = useContext(AuthContext);
     const [userData, setUserData] = useState({});
-    const [posts, setPosts] = useState([]);
+    const [userPosts, setUserPosts] = useState([]);
+    const [postsIds, setPostsIds] = useState([]);
 
     useEffect(() => {
         // console.log("User Data: ", user);
         const unsub = onSnapshot(doc(db, "users", user.uid), (doc) => {
             // console.log("doc: ", doc.data());
             setUserData(doc.data());
+            setPostsIds(doc.data().posts);
         });
         return () => unsub();
     }, [user]);
+
+    useEffect(() => {
+        let tempArr = [];
+        postsIds?.map(postId => {
+            onSnapshot(doc(db, "posts", postId), (doc) => {
+                tempArr.push(doc.data());
+                setUserPosts([...tempArr]);
+            });
+        });
+    }, [postsIds]);
 
     return (
         <div>
@@ -35,13 +47,7 @@ export default function Profile() {
             </div>
             <div className='profile-posts-cont'>
                 <div className='profile-posts'>
-                    <video src=''></video>
-                    <video src=''></video>
-                    <video src=''></video>
-                    <video src=''></video>
-                    <video src=''></video>
-                    <video src=''></video>
-                    <video src=''></video>
+                    {userPosts.map((post) => (<video key={post.postId} src={post.postURL}/>))}
                 </div>
             </div>
         </div>

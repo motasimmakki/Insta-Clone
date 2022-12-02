@@ -38,7 +38,9 @@ export default function Post({ postData, userData}) {
                 <p>{postData.profileName}</p>
             </div>
             <div className='post-like'>
-              {(!like)? <FavoriteBorderIcon onClick={handleLike}/>: <FavoriteIcon onClick={handleLike} className= 'likes'/>}
+              {(!like)? 
+                <FavoriteBorderIcon onClick={handleLike}/>: 
+                <FavoriteIcon onClick={handleLike} className= 'likes'/>}
               <p>{postData.likes.length}</p>
             </div>
         </div>
