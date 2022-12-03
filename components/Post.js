@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import * as ReactDOM from 'react-dom'
 import { Avatar, TextField } from '@mui/material'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -14,7 +15,8 @@ import DisplayComments from './DisplayComments';
 
 export default function Post({ postData, userData}) {
   const [like, setLike] = useState(false);
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [isMute, setIsMute] = useState(true);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -45,9 +47,26 @@ export default function Post({ postData, userData}) {
     }
   }
 
+  const handleMute = () => {
+    if(isMute) {
+      setIsMute(false);
+    } else {
+      setIsMute(true);
+    }
+  }
+
+  const handleNextVideo = (event) => {
+    let nextVideo = ReactDOM.findDOMNode(event.target).parentNode.nextSibling;
+    if(nextVideo) {
+      nextVideo.scrollIntoView({behaviour: "smooth"});
+    }
+  }
+
   return (
     <div className='post-cont'>
-        <video autoPlay muted controls src={postData.postURL} onDoubleClick={handleLike}/>
+        <video autoPlay muted 
+        src={postData.postURL} onDoubleClick={handleLike}
+        onClick={handleMute} onEnded={handleNextVideo}/>
         <div className='videos-info'>
             <div className='avatar-cont'>
                 <Avatar alt='Remy Sharp' src={postData.profilePhotoURL}/>
@@ -67,7 +86,7 @@ export default function Post({ postData, userData}) {
         fullWidth={true} maxWidth="md">
           <div className='modal-cont'>
             <div className='video-modal'>
-              <video src={postData.postURL}/>
+              <video autoPlay loop controls src={postData.postURL}/>
             </div>
             <div className='comments-modal'>
               <Card className='card1'>
