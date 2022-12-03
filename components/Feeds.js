@@ -33,6 +33,39 @@ export default function Feeds() {
     return () => unsub();
   }, []);
 
+
+  // ***Intersection Observer Code.
+  let options = {
+      threshold: 0.6
+  }
+
+  const callback = (entries) => {
+      entries.forEach((entry) => {
+        let element = entry.target.childNodes[0];
+          console.log(element);
+          element.play().then(() => {
+            if(!element.paused && !entry.isIntersecting) {
+              element.pause();
+            }
+          });
+      });
+  }
+
+  let observer = new IntersectionObserver(callback, options);
+
+  useEffect(() => {
+    const elements = document.querySelectorAll(".videos-cont");
+    // console.log("Elements: ", elements);
+    let postContainer = elements[0].childNodes;
+    postContainer.forEach((video) => {
+      console.log(video.childNodes[0]); // Video Element/ Video Tag.
+      observer.observe(video);
+    });
+    return () => {
+      observer.disconnect();
+    }
+  }, [posts]);
+
   return (
     <div className='feed-cont'>
         <Navbar userData={ userData }/>

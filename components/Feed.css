@@ -71,6 +71,7 @@
 .card1 {
     height: 70vh;
     padding: 0.5rem;
+    /* overflow-y: scroll; */
 }
 .card2 {
     padding: 0.5rem;
@@ -80,4 +81,12 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+}
+.comment {
+    display: flex;
+    padding: 0.5rem;
+    align-items: center;
+}
+.comment p {
+    margin-left: 1rem;
 }

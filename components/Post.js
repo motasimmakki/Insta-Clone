@@ -10,6 +10,7 @@ import { arrayRemove, arrayUnion, doc, updateDoc } from 'firebase/firestore';
 import AddCommentIcon from '@mui/icons-material/AddComment';
 import { db } from '../firebase';
 import Comment from './Comment';
+import DisplayComments from './DisplayComments';
 
 export default function Post({ postData, userData}) {
   const [like, setLike] = useState(false);
@@ -45,8 +46,8 @@ export default function Post({ postData, userData}) {
   }
 
   return (
-    <div className='post-cont' onDoubleClick={handleLike}>
-        <video src={postData.postURL}/>
+    <div className='post-cont'>
+        <video autoPlay muted controls src={postData.postURL} onDoubleClick={handleLike}/>
         <div className='videos-info'>
             <div className='avatar-cont'>
                 <Avatar alt='Remy Sharp' src={postData.profilePhotoURL}/>
@@ -69,7 +70,9 @@ export default function Post({ postData, userData}) {
               <video src={postData.postURL}/>
             </div>
             <div className='comments-modal'>
-              <Card className='card1'></Card>
+              <Card className='card1'>
+                <DisplayComments postData={postData}/>
+              </Card>
               <Card className='card2'>
                 <Typography>
                   {postData.likes.length === 0? 
@@ -80,8 +83,6 @@ export default function Post({ postData, userData}) {
                   {(!like)? 
                     <FavoriteBorderIcon onClick={handleLike}/>: 
                     <FavoriteIcon onClick={handleLike} className= 'likes'/>}
-                    {/* <TextField id="outlined-basic" label="Add comment" variant="outlined" />
-                    <Button variant='contained'>Post</Button> */}
                     <Comment userData={userData} postData={postData}/>
                 </div>
               </Card>
