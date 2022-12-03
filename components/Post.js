@@ -82,7 +82,7 @@ export default function Post({ postData, userData}) {
                     <FavoriteIcon onClick={handleLike} className= 'likes'/>}
                     {/* <TextField id="outlined-basic" label="Add comment" variant="outlined" />
                     <Button variant='contained'>Post</Button> */}
-                    <Comment/>
+                    <Comment userData={userData} postData={postData}/>
                 </div>
               </Card>
             </div>

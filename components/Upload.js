@@ -62,7 +62,7 @@ export default function Upload({ userData }) {
             profileName: userData.fullname,
             profilePhotoURL: userData.profilePhoto,
             userId: userData.uid,
-            comments: [],
+            comments: [uid],
             timeStamp: serverTimestamp()
           };
           console.log("postData: ", postData);

@@ -38,7 +38,7 @@ export default function Feeds() {
         <Navbar userData={ userData }/>
         <Upload userData={ userData }/>
         <div className='videos-cont'>
-          {posts.map((post) => <Post key={post.postId} postData={post} userData={user}/>)}
+          {posts.map((post) => <Post key={post.postId} postData={post} userData={userData}/>)}
         </div>
     </div>
   )
