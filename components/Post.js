@@ -12,6 +12,7 @@ import AddCommentIcon from '@mui/icons-material/AddComment';
 import { db } from '../firebase';
 import Comment from './Comment';
 import DisplayComments from './DisplayComments';
+import Image from 'next/image';
 
 export default function Post({ postData, userData}) {
   const [like, setLike] = useState(false);
@@ -64,50 +65,54 @@ export default function Post({ postData, userData}) {
 
   return (
     <div className='post-cont'>
-        <video autoPlay muted 
-        src={postData.postURL} onDoubleClick={handleLike}
-        onClick={handleMute} onEnded={handleNextVideo}/>
-        <div className='videos-info'>
-            <div className='avatar-cont'>
-                <Avatar alt='Remy Sharp' src={postData.profilePhotoURL}/>
-                <p>{postData.profileName}</p>
-            </div>
-            <div className='post-like'>
-              <AddCommentIcon onClick={handleClickOpen}/>
-              {(!like)? 
-                <FavoriteBorderIcon onClick={handleLike}/>: 
-                <FavoriteIcon onClick={handleLike} className= 'likes'/>}
-              <p>{postData.likes.length}</p>
-            </div>
-        </div>
-        <Dialog open={open} onClose={handleClose} 
-        aria-labelledby="alert-dialog-title" 
-        aria-describedby="alert-dialog-description" 
-        fullWidth={true} maxWidth="md">
-          <div className='modal-cont'>
-            <div className='video-modal'>
-              <video autoPlay loop controls src={postData.postURL}/>
-            </div>
-            <div className='comments-modal'>
-              <Card className='card1'>
-                <DisplayComments postData={postData}/>
-              </Card>
-              <Card className='card2'>
-                <Typography>
-                  {postData.likes.length === 0? 
-                    'Be the first one to like this post':
-                    `Liked by ${postData.likes.length} users`}
-                </Typography>
-                <div className='post-like2'>
-                  {(!like)? 
-                    <FavoriteBorderIcon onClick={handleLike}/>: 
-                    <FavoriteIcon onClick={handleLike} className= 'likes'/>}
-                    <Comment userData={userData} postData={postData}/>
-                </div>
-              </Card>
-            </div>
+      {
+        (postData.postType === 'video')?
+          <video autoPlay muted 
+          src={postData.postURL} onDoubleClick={handleLike}
+          onClick={handleMute} onEnded={handleNextVideo}/>
+        : <Image width="200" height="400" src={postData.postURL} alt='user-post'/>
+      }
+      <div className='videos-info'>
+          <div className='avatar-cont'>
+              <Avatar alt='Remy Sharp' src={postData.profilePhotoURL}/>
+              <p>{postData.profileName}</p>
           </div>
-        </Dialog>
+          <div className='post-like'>
+            <AddCommentIcon onClick={handleClickOpen}/>
+            {(!like)? 
+              <FavoriteBorderIcon onClick={handleLike}/>: 
+              <FavoriteIcon onClick={handleLike} className= 'likes'/>}
+            <p>{postData.likes.length}</p>
+          </div>
+      </div>
+      <Dialog open={open} onClose={handleClose} 
+      aria-labelledby="alert-dialog-title" 
+      aria-describedby="alert-dialog-description" 
+      fullWidth={true} maxWidth="md">
+        <div className='modal-cont'>
+          <div className='video-modal'>
+            <video autoPlay loop controls src={postData.postURL}/>
+          </div>
+          <div className='comments-modal'>
+            <Card className='card1'>
+              <DisplayComments postData={postData}/>
+            </Card>
+            <Card className='card2'>
+              <Typography>
+                {postData.likes.length === 0? 
+                  'Be the first one to like this post':
+                  `Liked by ${postData.likes.length} users`}
+              </Typography>
+              <div className='post-like2'>
+                {(!like)? 
+                  <FavoriteBorderIcon onClick={handleLike}/>: 
+                  <FavoriteIcon onClick={handleLike} className= 'likes'/>}
+                  <Comment userData={userData} postData={postData}/>
+              </div>
+            </Card>
+          </div>
+        </div>
+      </Dialog>
     </div>
   )
 }

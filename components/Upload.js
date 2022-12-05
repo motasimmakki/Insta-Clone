@@ -18,7 +18,9 @@ export default function Upload({ userData }) {
 
   const handleChange = (event) => {
     const file = event.target.files[0];
-    console.log(file);
+    // console.log(file);
+    const mediaType = file.type.includes('video')? 'video': 'image';
+    // console.log(mediaType);
     if(file === null) {
       setError("File Not Selected!");
       setTimeout(() => {setError('')}, 2000);
@@ -54,7 +56,7 @@ export default function Upload({ userData }) {
       () => {
         // Upload completed successfully, now we can get the download URL
         getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-          console.log('File available at: ', downloadURL);
+          // console.log('File available at: ', downloadURL);
           let postData = {
             likes: [],
             postId: uid,
@@ -63,9 +65,10 @@ export default function Upload({ userData }) {
             profilePhotoURL: userData.profilePhoto,
             userId: userData.uid,
             comments: [],
+            postType: mediaType,
             timeStamp: serverTimestamp()
           };
-          console.log("postData: ", postData);
+          // console.log("postData: ", postData);
           await setDoc(doc(db, "posts", uid), postData);
           console.log("Post added to post collection successfully!!!");
           setLoading(false);

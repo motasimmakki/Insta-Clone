@@ -42,7 +42,9 @@ export default function Feeds() {
   const callback = (entries) => {
       entries.forEach((entry) => {
         let element = entry.target.childNodes[0];
-          console.log(element);
+          // console.log(element);
+          // console.log(element.tagName.toLowerCase());
+          if(element.tagName.toLowerCase() !== 'video') return;
           element.play().then(() => {
             if(!element.paused && !entry.isIntersecting) {
               element.pause();
@@ -58,7 +60,7 @@ export default function Feeds() {
     // console.log("Elements: ", elements);
     let postContainer = elements[0].childNodes;
     postContainer.forEach((video) => {
-      console.log(video.childNodes[0]); // Video Element/ Video Tag.
+      // console.log(video.childNodes[0]); // Video Element/ Video Tag.
       observer.observe(video);
     });
     return () => {
