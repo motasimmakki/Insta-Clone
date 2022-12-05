@@ -20,7 +20,7 @@
     margin-top: 1rem;
     position: relative;
 }
-.actual-post {
+.actual-post, .detailed-post {
     width: 20rem;
     height: 100%;
     /* background-color: pink; */
@@ -28,6 +28,9 @@
     border: 1px solid black;
     object-fit: contain;
     position: absolute;
+}
+.detailed-post {
+    border: none;
 }
 .videos-info {
     position: absolute;

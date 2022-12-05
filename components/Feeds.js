@@ -43,8 +43,9 @@ export default function Feeds() {
       entries.forEach((entry) => {
         let element = entry.target.childNodes[0];
           // console.log(element);
-          // console.log(element.tagName.toLowerCase());
-          if(element.tagName.toLowerCase() !== 'video') return;
+          const elementType = element.tagName.toLowerCase();
+          // console.log(elementType);
+          if(elementType !== 'video') return;
           element.play().then(() => {
             if(!element.paused && !entry.isIntersecting) {
               element.pause();

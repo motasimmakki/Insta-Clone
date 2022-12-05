@@ -93,7 +93,12 @@ export default function Post({ postData, userData}) {
       fullWidth={true} maxWidth="md">
         <div className='modal-cont'>
           <div className='video-modal'>
-            <video autoPlay loop controls src={postData.postURL}/>
+            {
+              (postData.postType === 'video')?
+                <video autoPlay loop controls src={postData.postURL}/>
+              : <Image width="200" height="400" src={postData.postURL} 
+                alt='user-post' className="detailed-post"/>
+            }
           </div>
           <div className='comments-modal'>
             <Card className='card1'>
