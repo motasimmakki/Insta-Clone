@@ -69,8 +69,10 @@ export default function Post({ postData, userData}) {
         (postData.postType === 'video')?
           <video autoPlay muted 
           src={postData.postURL} onDoubleClick={handleLike}
-          onClick={handleMute} onEnded={handleNextVideo}/>
-        : <Image width="200" height="400" src={postData.postURL} alt='user-post'/>
+          onClick={handleMute} onEnded={handleNextVideo}
+          className="actual-post"/>
+        : <Image width="200" height="400" src={postData.postURL} 
+          alt='user-post' className="actual-post"/>
       }
       <div className='videos-info'>
           <div className='avatar-cont'>

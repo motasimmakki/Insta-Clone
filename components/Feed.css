@@ -20,7 +20,7 @@
     margin-top: 1rem;
     position: relative;
 }
-.post-cont>video {
+.actual-post {
     width: 20rem;
     height: 100%;
     /* background-color: pink; */
